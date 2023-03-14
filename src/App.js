@@ -10,6 +10,7 @@ import { BrowserRouter,
 import Home from './views/Home'
 import Inventory from './views/Inventory'
 import Profile from './views/Profile'
+import CarSingle from './views/CarSingle';
 
 function App() {
   return(
@@ -28,6 +29,7 @@ function App() {
       </ul>
     </nav>
     <Routes>
+      <Route path="/Car/:id" element={<CarSingle/>}/>
       <Route path="/Inventory" element={<Inventory/>}/>
       <Route path="/Profile" element={<Profile/>}/>
       <Route path="/" element={<Home/>}/>

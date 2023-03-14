@@ -25,7 +25,7 @@ export default function Counter(props) {
 
 
             }
-            {/*<button onClick ={() => increment(5) }>Add 5</button>*/}
+        
             </div>
         </div>
     )
