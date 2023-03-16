@@ -1,22 +1,26 @@
 import { useParams } from "react-router-dom"
-import {useState, useEffect} from 'react'
+import {useState, useEffect, useContext} from 'react'
 import Car from '../component/Car'
+import { DataContext } from "../contexts/DataProvider"
+
 export default function CarSingle() {
     const { id } = useParams()
     const [car, setCar] = useState({})
     const [error, setError] = useState(false)
+    const {getCar} = useContext(DataContext)
+
     useEffect(() => {
-        async function getCar() {
+        async function handleLoad() {
         try {
-                const response = await fetch(`https://my-json-server.typicode.com/Llang8/cars-api/cars/${id}`)
-                const data = await response.json()
+                const data = await getCar(id)
                 setCar(data)
             } catch(err) {
                 setError(true)
             }
         }
-        getCar()
+        handleLoad()
     }, [])
+    
     return (
         <div>
             {
@@ -26,7 +30,7 @@ export default function CarSingle() {
                     <p></p>
                 </>:
                 <>
-                    <h1>Car Single: {id}</h1>
+                    <h1>Car Id: {id}</h1>
                     <Car car={car} hideLink={true}/>
                 </>
             }
